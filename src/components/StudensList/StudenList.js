@@ -23,7 +23,7 @@ export default class StudenList extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/api/Studen/StudenList')
+        axios.get('http://localhost:9000/api/Studen/StudenList')
             .then(res => {
                 this.setState({
                     Studens: res.data
@@ -32,7 +32,7 @@ export default class StudenList extends React.Component {
     }
 
     toggle = async () =>{
-        await axios.get('http://localhost:5000/api/Studen/StudenList')
+        await axios.get('http://localhost:9000/api/Studen/StudenList')
             .then(res => {
                 this.setState({
                     Studens: res.data,

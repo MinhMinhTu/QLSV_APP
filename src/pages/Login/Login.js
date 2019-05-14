@@ -19,8 +19,9 @@ export default function Login(props) {
 
     }
     const onHandleSubmit = (e) => {
+        console.log(1)
         e.preventDefault();
-        axios.post('http://localhost:5000/login/authentica', {
+        axios.post('http://localhost:9000/login/authentica', {
             username : md5(username),
             password: md5(password)
         }).then(res => {
@@ -58,9 +59,9 @@ export default function Login(props) {
     }
 
     useEffect(() => {
-        let data = JSON.parse(sessionStorage.getItem('data'));
+        let data = JSON.parse(localStorage.getItem('data'));
         if (data !== null) {
-            props.Validation(data.username, data.password);
+            props.Validation(data.token);
         }
     })
     return (

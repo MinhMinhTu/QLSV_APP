@@ -47,7 +47,7 @@ export default class EditStuden extends React.Component {
             return;
         }
         
-        await axios.put(`http://localhost:5000/api/Studen/${id}`, {
+        await axios.put(`http://localhost:9000/api/Studen/${id}`, {
             name: name,
             email: email,
             gender: gender

@@ -22,7 +22,7 @@ class Action extends Component {
     async onDelete() {
         if(confirm('Are you sure delete?')){
             const id = this.props.data._id;
-            await axios.delete(`http://localhost:5000/api/Studen/${id}`).then(res => this.props.onDelete(id, res.data))
+            await axios.delete(`http://localhost:9000/api/Studen/${id}`).then(res => this.props.onDelete(id, res.data))
         }
     }
     render() {
