@@ -24,10 +24,12 @@ class App extends Component {
             txt_password: password
         })
     }
+
     onLogout = () => {
         sessionStorage.removeItem('data');
         location.reload();
     }
+    
     render() {
         const { txt_username, txt_password } = this.state;
         if ((txt_username && txt_password) === '') {
@@ -47,6 +49,9 @@ class App extends Component {
                             </div>
                             <div className="linkTag">
                                 <Link to="/StudenList/">Danh Sách Studen</Link>
+                            </div>
+                            <div className="btn_logout">
+                                <button className="btn btn-primary" onClick={this.onLogout}>Logout</button>
                             </div>
                         </Navbar>
                         <div className="container">
