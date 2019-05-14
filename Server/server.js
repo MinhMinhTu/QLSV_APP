@@ -4,7 +4,8 @@ const users = require('./routes/routes');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('./config/database'); //database configuration
-const jwt = require('jsonwebtoken');
+
+var jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const app = express();
 app.set('secretKey', 'nodeRestApi'); // jwt secret token
@@ -30,7 +31,6 @@ app.use('/api/Studen', users)
 app.get('/favicon.ico', function (req, res) {
     res.sendStatus(204);
 });
-
 //run server
 app.listen(PORT,  ()=>{
     console.log(`Server listening on port ${PORT}`);
