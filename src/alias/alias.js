@@ -12,6 +12,14 @@ const alias =(path)=>({
     apiCaller :`${path}/src/utils/apiCaller.js`,
     font : `${path}/node_modules/font-awesome/css/font-awesome.min.css`,
     Echart:`${path}/src/pages/Chart/Echart.js`,
+    Student:`${path}/src/components/Studen/studen.js`,
+    StudenList:`${path}/src/components/StudensList/StudenList.js`,
+    EditStudent:`${path}/src/components/StudensList/EditStudent.js`,
+    Action:`${path}/src/components/action/Action.js`,
+
+
+
+    
 
 })
 module.exports ={

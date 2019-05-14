@@ -3,8 +3,8 @@ import { Table } from 'reactstrap';
 import axios from 'axios';
 
 
-import Action from '../action/Action';
-import EditStudent from '../StudensList/EditStudent'
+import Action from 'Action';
+import EditStudent from 'EditStudent'
 
 
 

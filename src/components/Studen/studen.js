@@ -1,10 +1,7 @@
 import React from 'react';
 import {
-    Navbar,
-    NavbarBrand,
     Button, Form, FormGroup, Label, Input
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 

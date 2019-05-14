@@ -1,11 +1,11 @@
 
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css'
-// import Routes from './Routes';
+
 import Login from 'Login';
-import Studen from './components/Studen/studen'
-import StudenList from './components/StudensList/StudenList'
+import Studen from 'Student'
+import StudenList from 'StudenList'
 import { Navbar } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
