@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './index.scss';
 const Recaptcha = require('react-recaptcha');
 import md5 from 'md5'
+import axios from 'axios'
 
 export default function Login(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [verify, setVerify] = useState(false);
+    const [errors, seterrors] = useState(false);
 
     const onHandleChangeUsername = (e) => {
         setUsername(e.target.value);
@@ -18,37 +20,30 @@ export default function Login(props) {
     }
     const onHandleSubmit = (e) => {
         e.preventDefault();
-        let users =
-        {
-            username: username,
-            password: password
-        }
-        fetch('http://localhost:5000/login/authentica', {
-            method: 'POST',
-            body: JSON.stringify(users),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-
-        })
-            .then(res =>res.json())
-            .then(data => {
-                console.log(data)
-                if(data.status === true){
-                    let username = data.data.user.username;
-                    let password = data.data.user.password;
-                    let token = data.data.token;
-                    if (verify) {
-                        props.Validation(username, password);
-                        sessionStorage.setItem('data', JSON.stringify({ username: username, password: md5(password), token:token }));
-                    }
-                    else {
-                        alert('Please verify equal Captcha!!!!!!');
-                    }
-                } else {
-                    alert('Error logging in please try again');
+        axios.post('http://localhost:5000/login/authentica', {
+            username : md5(username),
+            password: md5(password)
+        }).then(res => {
+            if(res.status === 404){
+                seterrors(true)
+            }
+            else if(res.status === 500){
+                seterrors(true)
+            }
+            else if(res.status === 200){
+                let token = res.data.token;
+                if (verify) {
+                    props.Validation(token);
+                    localStorage.setItem('data', JSON.stringify({token:token }));
                 }
-            })
+                else {
+                    alert('Please verify equal Captcha!!!!!!');
+                }
+            } 
+            else {
+                alert('Error logging in please try again');
+            }
+        })
     }
     const verifyCallback = (res) => {
         if (res) {
@@ -80,6 +75,7 @@ export default function Login(props) {
                 <p className="title">GENEX WIFI</p>
                 <h6>value through your wifi</h6>
                 </div>
+                <h5 className="text-center" style={{"color" : "red", "fontWeight" : "900"}}>{errors ? 'Username or Password incorrect' : ''}</h5>
                 <form onSubmit={onHandleSubmit}>
                     <div className="form-group">
                         <label >Username:</label>

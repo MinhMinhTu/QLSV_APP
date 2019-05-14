@@ -60,10 +60,6 @@ export default class StudenList extends React.Component {
             newData: data,
             isShow: !this.state.isShow
         })
-        // axios.get('http://localhost:5000/api/Studen/StudenList')
-        //     .then(res => {
-        //        console.log(res.data)
-        //     })
     }
     render() {
         const { Studens,newData, isShow} = this.state;

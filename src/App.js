@@ -9,30 +9,27 @@ import StudenList from 'StudenList'
 import { Navbar } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            txt_username: '',
-            txt_password: ''
+            token: ''
         }
     }
-    Validation = (username, password) => {
+    Validation = (token) => {
         this.setState({
-            txt_username: username,
-            txt_password: password
+            token: token
         })
     }
 
     onLogout = () => {
-        sessionStorage.removeItem('data');
+        localStorage.removeItem('data');
         location.reload();
     }
-    
+
     render() {
-        const { txt_username, txt_password } = this.state;
-        if ((txt_username && txt_password) === '') {
+        const { token } = this.state;
+        if (!token) {
             return (
                 <div>
                     <Login Validation={this.Validation} />

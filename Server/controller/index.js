@@ -5,17 +5,20 @@ const jwt = require('jsonwebtoken');
 module.exports = {
     authenticate: function (req, res, next) {
         userModel.findOne({ username: req.body.username }, function (err, userInfo) {
-            
             if (userInfo === null) {
-                console.log("error rồi!")
+                res.status(404).send({
+                    message : "not found user"
+                })
                 next(err);
             } else {
-                if (req.body.password === userInfo.password) {                  
+                if (req.body.token || req.body.password === userInfo.password) {                  
                     const token = jwt.sign({ id: userInfo._id }, req.app.get('secretKey'), { expiresIn: '1h' });
-                    res.json({ status:true, message: "user found!!!", data: { user: userInfo, token: token } });
+                    res.json({token : token})
+                    // res.json({ status:true, message: "user found!!!", data: { user: userInfo, token: token } });
                 } else {
-                    res.json({ status: false, message: "Invalid email/password!!!", data: null });
-                    console.log(res);
+                    res.status(500).send({
+                        message : "password wrong"
+                    })
                 }
             }
         });
