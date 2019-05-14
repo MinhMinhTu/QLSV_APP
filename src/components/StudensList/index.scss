@@ -1,0 +1,22 @@
+.modalEdit {
+    position: absolute;
+    background-color: #32ca83;
+    width: 500px;
+    height: 277px;
+    padding: 10px;
+    top: 20%;
+    left: 30%;
+    border-radius: 10px;
+}
+
+button.btn.btn-danger.closed {
+    position: absolute;
+    right: 9px;
+    padding: 0;
+    font-size: 27px;
+    background: none;
+    border: none;
+    color: black;
+    font-weight: 900;
+    top: -5px;
+}
