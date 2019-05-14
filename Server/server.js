@@ -4,10 +4,6 @@ const users = require('./routes/routes');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('./config/database'); //database configuration
-
-const app = express();
-const dotenv = require('dotenv')
-
 app.set('secretKey', 'nodeRestApi'); // jwt secret token
 // connection to mongodb
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -30,7 +26,6 @@ app.use('/api/Studen', users)
 app.get('/favicon.ico', function (req, res) {
     res.sendStatus(204);
 });
-
 app.listen(PORT,  ()=>{
     console.log(`Server listening on port ${PORT}`);
 });
