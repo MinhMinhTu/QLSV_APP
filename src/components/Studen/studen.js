@@ -34,7 +34,11 @@ export default class Studen extends React.Component {
     hanndleSubmit(e) {
         e.preventDefault();
         const {name, email, gender} = this.state;
-        if(name === '' || email === '' || gender === ''){
+        const number =/^[0-9]*$/;
+        const StringNumber =/^(?=.*[a-zA-Z])(?=.*[0-9])/;
+        const emailRegex =/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        
+        if(name === '' || email === '' || gender === '' || StringNumber.test(name) || number.test(name) || !emailRegex.test(email.toLowerCase())){
             this.setState({
                 errors : true
             })
@@ -57,6 +61,9 @@ export default class Studen extends React.Component {
     }
     render() {
         const {name, email, gender, errors} = this.state;
+        const number =/^[0-9]*$/;
+        const StringNumber =/^(?=.*[a-zA-Z])(?=.*[0-9])/;
+        const emailRegex =/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         return (
             <div>
                 <div>
@@ -71,7 +78,11 @@ export default class Studen extends React.Component {
                                 onChange={this.HandleChange}
                                 value={name}
                             />
-                            <span>{errors ? (name === '' ? 'Name not is empty' : '') : ''}</span>
+                            <span>{errors ?
+                                    (
+                                        name === '' || StringNumber.test(name) || number.test(name) ? 'Name wrong' : ''
+                                    ) 
+                                        : ''}</span>
                         </FormGroup>
                         <FormGroup>
                             <Label for="email">Email</Label>
@@ -83,7 +94,7 @@ export default class Studen extends React.Component {
                                 onChange={this.HandleChange}
                                 value={email}
                             />
-                            <span>{errors ? (email === '' ? 'Email not is empty' : '')  : ''}</span>
+                            <span>{errors ? (email === '' || !emailRegex.test(email.toLowerCase()) ? 'Email wrong' : '')  : ''}</span>
                         </FormGroup>
                         <FormGroup>
                         <Label for="gender">Gender</Label>
