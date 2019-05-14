@@ -4,8 +4,10 @@ const users = require('./routes/routes');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('./config/database'); //database configuration
-var jwt = require('jsonwebtoken');
+
 const app = express();
+const dotenv = require('dotenv')
+
 app.set('secretKey', 'nodeRestApi'); // jwt secret token
 // connection to mongodb
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -18,6 +20,9 @@ app.get('/', function (req, res) {
 
 app.use(cors());
 
+//config enviroment
+dotenv.config()
+const PORT = process.env.PORT || 5000
 // public route
 app.use('/login', users);
 app.use('/api/Studen', users)
@@ -42,7 +47,7 @@ app.use(function (err, req, res, next) {
     else
         res.status(500).json({ message: "Something looks wrong :( !!!" });
 });
-app.listen(5000,  ()=>{
-    console.log(' Server listening on port 5000');
+app.listen(PORT,  ()=>{
+    console.log(`Server listening on port ${PORT}`);
 });
 
