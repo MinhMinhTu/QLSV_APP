@@ -8,6 +8,7 @@ import Studen from 'Student'
 import StudenList from 'StudenList'
 import { Navbar } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import Loading from './components/spinner/circle'
 
 class App extends Component {
     constructor(props) {
@@ -39,23 +40,26 @@ class App extends Component {
         else {
             return (
                 <Router>
-                    <div className="container">
-                        <Navbar color="light" light expand="md">
-                            <div className="linkTag">
-                                <Link to="/">Quản Lý Studen</Link>
-                            </div>
-                            <div className="linkTag">
-                                <Link to="/StudenList/">Danh Sách Studen</Link>
-                            </div>
-                            <div className="btn_logout">
-                                <button className="btn btn-primary" onClick={this.onLogout}>Logout</button>
-                            </div>
-                        </Navbar>
+                    <>
+                        <Loading />
                         <div className="container">
-                            <Route path="/" exact component={Studen} />
-                            <Route path="/StudenList/" component={StudenList} />
+                            <Navbar color="light" light expand="md">
+                                <div className="linkTag">
+                                    <Link to="/">Quản Lý Studen</Link>
+                                </div>
+                                <div className="linkTag">
+                                    <Link to="/StudenList/">Danh Sách Studen</Link>
+                                </div>
+                                <div className="btn_logout">
+                                    <button className="btn btn-primary" onClick={this.onLogout}>Logout</button>
+                                </div>
+                            </Navbar>
+                            <div className="container">
+                                <Route path="/" exact component={Studen} />
+                                <Route path="/StudenList/" component={StudenList} />
+                            </div>
                         </div>
-                    </div>
+                    </>
                 </Router>
             );
         }
