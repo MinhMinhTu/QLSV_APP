@@ -4,7 +4,8 @@ import axios from 'axios';
 
 
 import Action from 'Action';
-import EditStudent from 'EditStudent'
+import EditStudent from './EditStudent';
+import DeleteModdal from './DeleteModel';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,7 +18,9 @@ export default class StudenList extends React.Component {
         this.state = {
             Studens: [],
             newData: '',
-            isShow: false
+            isShow: false,
+            isShowModal: false,
+            data: ''
         }
 
         this.onEdit = this.onEdit.bind(this);
@@ -40,7 +43,7 @@ export default class StudenList extends React.Component {
                 .then(res => {
                     this.setState({
                         Studens: res.data,
-                        isShow: false
+                        isShow: false,
                     })
                 })
             await toast.success('Wow so easy!', {
@@ -57,18 +60,35 @@ export default class StudenList extends React.Component {
         })
 
     }
-
-
-    onDelete = (id, data) => {
+    handleClose = async (value) => {
+        const id = this.state.data._id;
+        const data = this.state.data;
         const { Studens } = this.state;
-        if (!id || !data) {
-            return;
+        if (value) {
+
+            if (!id || !data) {
+                return;
+            }
+            await axios.delete(`http://localhost:9000/api/Studen/${id}`)
+            const newData = Studens.filter(studen => {
+                return studen._id !== data._id
+            })
+            this.setState({
+                Studens: newData,
+                isShowModal: !value
+            })
         }
-        const newData = Studens.filter(studen => {
-            return studen._id !== data._id
-        })
+        else {
+            this.setState({
+                isShowModal: value,
+            })
+        }
+    }
+
+    onDelete = (data, value) => {
         this.setState({
-            Studens: newData
+            isShowModal: value,
+            data: data
         })
 
     }
@@ -79,10 +99,11 @@ export default class StudenList extends React.Component {
         })
     }
     render() {
-        const { Studens, newData, isShow } = this.state;
+        const { Studens, newData, isShow, isShowModal } = this.state;
         return (
             <>
                 <Table>
+                    {isShowModal && <DeleteModdal isShowModal={isShowModal} handleClose={this.handleClose} />}
                     {isShow && <EditStudent data={newData} toggle={this.toggle} />}
                     <thead >
                         <tr>
@@ -108,6 +129,7 @@ export default class StudenList extends React.Component {
                     }
                 </Table>
                 <ToastContainer />
+
             </>
         )
     }

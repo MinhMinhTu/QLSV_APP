@@ -8,6 +8,8 @@
     left: 50%;
     border-radius: 10px;
     transform: translate(-50%,0);
+    -webkit-box-shadow: 2px 5px 16px 0px #0B325E, inset -50px -50px 50px -30px rgba(255,39,39,0); 
+    box-shadow: 2px 5px 16px 0px #0B325E, inset -50px -50px 50px -30px rgba(255,39,39,0);
 }
 .modalEdit img {
     position: absolute;
@@ -30,3 +32,26 @@ table.table {
     margin-top: 80px;
 }
 
+// modal delete
+.fade{
+    opacity: 1!important
+}
+.modal-content {
+    top: 100px;
+}
+.modal-backdrop {
+    background-color: #ffffff00!important;
+}
+.modal-header {
+    padding: 20px!important;
+}
+.modal-dialog {
+    width: 400px!important;
+}
+span {
+    position: absolute;
+    top: 5px;
+    right: 12px;
+    color: black;
+    font-size: 30px;
+}

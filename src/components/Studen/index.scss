@@ -13,7 +13,13 @@ span{
 }
 form {
     margin-top: 80px;
+    border: 10px solid #32d5be;
+    border-radius: 18px;
+    padding: 21px;
 }
+.btn{
+    background:#32d5be;
+} 
 //tostify
 
 .Toastify__toast-container--top-right{

@@ -20,10 +20,9 @@ class Action extends Component {
         this.props.onEdit(data)
     }
     async onDelete() {
-        if(confirm('Are you sure delete?')){
-            const id = this.props.data._id;
-            await axios.delete(`http://localhost:9000/api/Studen/${id}`).then(res => this.props.onDelete(id, res.data))
-        }
+            // const id = this.props.data._id;
+            // await axios.delete(`http://localhost:9000/api/Studen/${id}`).then(res => this.props.onDelete(id, res.data,true))
+            this.props.onDelete(this.props.data,true)
     }
     render() {
         return (
