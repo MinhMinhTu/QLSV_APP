@@ -6,6 +6,7 @@ import './App.css'
 import Login from 'Login';
 import Studen from 'Student'
 import StudenList from 'StudenList'
+import Home from './components/Home/index'
 import { Navbar } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Loading from './components/spinner/circle'
@@ -42,22 +43,26 @@ class App extends Component {
                 <Router>
                     <>
                         <Loading />
-                        <div className="container">
+                        <div>
                             <Navbar color="light" light expand="md">
-                                <div className="linkTag">
-                                    <Link to="/">Quản Lý Studen</Link>
+                            <div className="linkTag">
+                                    <Link to="/">Trang Chủ</Link>
                                 </div>
                                 <div className="linkTag">
-                                    <Link to="/StudenList/">Danh Sách Studen</Link>
+                                    <Link to="/Management">Quản Lý Student</Link>
+                                </div>
+                                <div className="linkTag">
+                                    <Link to="/StudenList/">Danh Sách Student</Link>
                                 </div>
                                 <div className="btn_logout">
                                     <button className="btn btn-primary" onClick={this.onLogout}>Logout</button>
                                 </div>
                             </Navbar>
                             <div className="container">
-                                <Route path="/" exact component={Studen} />
+                                <Route path="/Management" exact component={Studen} />
                                 <Route path="/StudenList/" component={StudenList} />
                             </div>
+                            <Route path="/" exact component={Home} />
                         </div>
                     </>
                 </Router>

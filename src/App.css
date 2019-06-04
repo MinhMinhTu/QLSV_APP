@@ -40,3 +40,17 @@ body{
     float: right;
     margin-right: 5px;
 }
+
+/* navbar */
+.navbar {
+    position: fixed!important;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    width: 100%;
+    z-index: 999999;
+}
+/* navbar link */
+.linkTag{
+    font-size: 13px!important
+}

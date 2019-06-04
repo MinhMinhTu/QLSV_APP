@@ -12,7 +12,7 @@ router.get('/StudenList',authController.getStudens);
 
 router.get('/:id',authController.getOneStudens);
 
-router.post('/addStuden',authController.postStuden);
+router.post('/Management',authController.postStuden);
 
 router.delete('/:id',authController.deleteStuden);
 

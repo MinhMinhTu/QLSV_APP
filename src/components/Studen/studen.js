@@ -48,7 +48,7 @@ export default class Studen extends React.Component {
             return;
         }
 
-        axios.post('http://localhost:9000/api/Studen/addStuden', {
+        axios.post('http://localhost:9000/api/Studen/Management', {
             name: name,
             email: email,
             gender: gender

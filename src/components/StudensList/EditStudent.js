@@ -8,6 +8,7 @@ import 'babel-polyfill';
 
 
 
+const imgURL = "../../../src/asset/image/genex_logo.png"
 export default class EditStuden extends React.Component {
     constructor(props) {
         super(props);
@@ -20,8 +21,8 @@ export default class EditStuden extends React.Component {
         }
     }
 
-    toggle = () => {
-        this.props.toggle();
+    toggle = (value) => {
+        this.props.toggle(value);
     }
     HandleChange = (e) => {
         const target = e.target;
@@ -52,7 +53,7 @@ export default class EditStuden extends React.Component {
             email: email,
             gender: gender
         })
-        this.toggle()
+        this.toggle(true)
         
     }
     render() {
@@ -62,6 +63,7 @@ export default class EditStuden extends React.Component {
         const emailRegex =/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         return (
             <div className="modalEdit">
+                <img src={imgURL}/>
                 <Button color="danger closed" onClick={this.toggle}>x</Button>
                 <Form onSubmit={this.hanndleSubmit}>
                     <FormGroup>

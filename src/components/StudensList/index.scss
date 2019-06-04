@@ -1,12 +1,18 @@
 .modalEdit {
     position: absolute;
-    background-color: #32ca83;
+    background-color: #b4eed3;
     width: 500px;
-    height: 277px;
+    height: auto;
     padding: 10px;
     top: 20%;
-    left: 30%;
+    left: 50%;
     border-radius: 10px;
+    transform: translate(-50%,0);
+}
+.modalEdit img {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 button.btn.btn-danger.closed {
@@ -20,3 +26,7 @@ button.btn.btn-danger.closed {
     font-weight: 900;
     top: -5px;
 }
+table.table {
+    margin-top: 80px;
+}
+

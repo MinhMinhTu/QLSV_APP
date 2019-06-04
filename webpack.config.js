@@ -1,7 +1,10 @@
 const path = require('path');
 const Htmlwebpackplugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {alias} = require(path.resolve(__dirname,'src/alias/alias.js'))
 const webpack = require('webpack');
+
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
     entry: './src/index.js',
@@ -23,6 +26,7 @@ module.exports = {
                         "plugins": [ 
                             "@babel/plugin-syntax-dynamic-import",
                             "@babel/plugin-proposal-class-properties",
+                            "emotion"
                         ]
                     }
                 }
@@ -43,7 +47,7 @@ module.exports = {
                 ]
             },
             {
-                test:/\.jpg$|\.ttf$|\.woff$|\.woff2|\.eot$|\.svg$/,
+                test:/\.png$|\.jpg$|\.ttf$|\.woff$|\.woff2$|\.eot$|\.svg$/,
                 loader : 'file-loader'
             },
             {
@@ -64,6 +68,10 @@ module.exports = {
             'jQuery': 'jquery',
             'window.$': 'jquery',
             'window.jQuery': 'jquery'
+        }),
+        new MiniCssExtractPlugin({
+            filename: devMode ? '[name].css' : '[name].[hash].css',
+            chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
         })
     ],
     devServer:{

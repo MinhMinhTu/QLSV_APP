@@ -1,13 +1,14 @@
 import React from 'react';
 import { css } from '@emotion/core';
-// First way to import
-import { SyncLoader} from 'react-spinners';
+import { SyncLoader } from 'react-spinners';
 import './index.scss'
+import 'babel-polyfill';
 
 const override = css`
     display: block;
     margin: 0 auto;
     border-color: red;
+   
 `;
 
 class Circle extends React.Component {
@@ -18,12 +19,12 @@ class Circle extends React.Component {
         }
     }
 
-    componentDidMount(){
-        setTimeout(()=>{
+    async componentDidMount() {
+        await setTimeout(() => {
             this.setState({
-                loading : false
+                loading: false
             })
-        },2000)
+        }, 1500)
     }
     render() {
         const content = this.state.loading ? <div className='sweet-loading'>

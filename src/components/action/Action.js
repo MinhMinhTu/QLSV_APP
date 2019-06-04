@@ -16,7 +16,7 @@ class Action extends Component {
 
 
     onEdit() {
-        const data = this.props.data;
+        const {data} = this.props;
         this.props.onEdit(data)
     }
     async onDelete() {
