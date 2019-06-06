@@ -15,13 +15,9 @@ const alias =(path)=>({
     Student:`${path}/src/components/Studen/studen.js`,
     StudenList:`${path}/src/components/StudensList/StudenList.js`,
     EditStudent:`${path}/src/components/StudensList/EditStudent.js`,
-    Action:`${path}/src/components/action/Action.js`,
-
-
-
-    
-
+    Action:`${path}/src/components/action/Action.js`
 })
-module.exports ={
+
+module.exports= ({
     alias
-}
+})

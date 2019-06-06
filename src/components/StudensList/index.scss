@@ -48,10 +48,15 @@ table.table {
 .modal-dialog {
     width: 400px!important;
 }
-span {
+.errors {
     position: absolute;
-    top: 5px;
-    right: 12px;
-    color: black;
-    font-size: 30px;
+    top: 57px;
+    left: 0;
+    color: red;
+    font-size: 18;
+    height: auto;
+}
+.form-group {
+    margin-bottom: 18px;
+    position: relative;
 }

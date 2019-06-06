@@ -1,43 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import { Button } from 'reactstrap';
-import axios from 'axios'
 import 'babel-polyfill';
 
 
-class Action extends Component {
-    constructor(props) {
-        super(props);
-
-        this.onEdit = this.onEdit.bind(this);
-        this.onDelete = this.onDelete.bind(this);
-
+export const Action = (props) =>{
+    const onEdit =()=>{
+        const {data} = props;
+        props.onEdit(data)
     }
-
-
-    onEdit() {
-        const {data} = this.props;
-        this.props.onEdit(data)
+    const onDelete= async ()=>{
+            props.onDelete(props.data,true)
     }
-    async onDelete() {
-            // const id = this.props.data._id;
-            // await axios.delete(`http://localhost:9000/api/Studen/${id}`).then(res => this.props.onDelete(id, res.data,true))
-            this.props.onDelete(this.props.data,true)
-    }
-    render() {
         return (
             <div>
                 <Button
                     color="warning"
-                    onClick={this.onEdit}
+                    onClick={onEdit}
                 >Edit</Button>{' '}
                 <Button
                     color="danger"
-                    onClick={this.onDelete}
+                    onClick={onDelete}
                 >Delete</Button>{' '}
             </div>
         )
-    }
 }
-
-export default Action;

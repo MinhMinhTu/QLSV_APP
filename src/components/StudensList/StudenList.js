@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import { Table } from 'reactstrap';
 import axios from 'axios';
-
-
-import Action from 'Action';
-import EditStudent from './EditStudent';
+import {Action} from 'Action';
+import {EditStudent} from './EditStudent';
 import DeleteModdal from './DeleteModel';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,39 +10,27 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
-export default class StudenList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            Studens: [],
-            newData: '',
-            isShow: false,
-            isShowModal: false,
-            data: ''
-        }
-
-        this.onEdit = this.onEdit.bind(this);
-        this.onDelete = this.onDelete.bind(this);
-    }
-
-    componentDidMount() {
+function StudenList(){
+    const [Studens, setStudens] = useState([]);
+    const [newData, setNewData] = useState([])
+    const [isShow, setIsShow] = useState(false);
+    const [isShowModal, setIsShowModal] = useState(false);
+    const [data, setData] = useState('')
+    
+    useEffect(function(){
         axios.get('http://localhost:9000/api/Studen/StudenList')
             .then(res => {
-                this.setState({
-                    Studens: res.data
-                })
+                setStudens(res.data)
             })
 
-    }
+    },[]) 
 
-    toggle = async (value) => {
+    const toggle = async (value) => {
         if (value === true) {
             await axios.get('http://localhost:9000/api/Studen/StudenList')
                 .then(res => {
-                    this.setState({
-                        Studens: res.data,
-                        isShow: false,
-                    })
+                    setStudens(res.data);
+                    setIsShow(false);
                 })
             await toast.success('Wow so easy!', {
                 position: "top-right",
@@ -55,56 +41,40 @@ export default class StudenList extends React.Component {
                 draggable: true
             });
         }
-        this.setState({
-            isShow: false
-        })
+        setIsShow(false)
 
     }
-    handleClose = async (value) => {
-        const id = this.state.data._id;
-        const data = this.state.data;
-        const { Studens } = this.state;
+    const handleClose = async (value) => {
         if (value) {
 
             if (!id || !data) {
                 return;
             }
-            await axios.delete(`http://localhost:9000/api/Studen/${id}`)
+            await axios.delete(`http://localhost:9000/api/Studen/${data._id}`)
             const newData = Studens.filter(studen => {
                 return studen._id !== data._id
             })
-            this.setState({
-                Studens: newData,
-                isShowModal: !value
-            })
+            setStudens(newData);
+            setIsShowModal(!value)
         }
         else {
-            this.setState({
-                isShowModal: value,
-            })
+            setIsShowModal(value)
         }
     }
 
-    onDelete = (data, value) => {
-        this.setState({
-            isShowModal: value,
-            data: data
-        })
-
+    const onDelete = (data, value) => {
+        setIsShowModal(value)
+        setData(data)
     }
-    onEdit = (data) => {
-        this.setState({
-            newData: data,
-            isShow: !this.state.isShow
-        })
+    const onEdit = (data) => {
+        setNewData(data);
+        setIsShow(!isShow)
     }
-    render() {
-        const { Studens, newData, isShow, isShowModal } = this.state;
         return (
             <>
                 <Table>
-                    {isShowModal && <DeleteModdal isShowModal={isShowModal} handleClose={this.handleClose} />}
-                    {isShow && <EditStudent data={newData} toggle={this.toggle} />}
+                    {isShowModal && <DeleteModdal isShowModal={isShowModal} handleClose={handleClose} />}
+                    {isShow && <EditStudent data={newData} toggle={toggle} />}
                     <thead >
                         <tr>
                             <th>Name</th>
@@ -121,7 +91,7 @@ export default class StudenList extends React.Component {
                                         <td>{studen.name}</td>
                                         <td>{studen.email}</td>
                                         <td>{studen.gender}</td>
-                                        <td><Action data={studen} onEdit={this.onEdit} onDelete={this.onDelete} /></td>
+                                        <td><Action data={studen} onEdit={onEdit} onDelete={onDelete} /></td>
                                     </tr>
                                 </tbody>
                             )
@@ -129,8 +99,7 @@ export default class StudenList extends React.Component {
                     }
                 </Table>
                 <ToastContainer />
-
             </>
         )
-    }
 }
+export default StudenList;

@@ -20,7 +20,6 @@ export default function Login(props) {
 
     }
     const onHandleSubmit = (e) => {
-        console.log(1)
         e.preventDefault();
         axios.post('http://localhost:9000/login/authentica', {
             username : md5(username),
