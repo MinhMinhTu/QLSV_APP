@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import './index.scss'
 
-class Countdown extends React.Component {
-    state = {
+export const Countdown = (props) => {
+    const [dates, setDates] = useState({
         days: undefined,
         hours: undefined,
         minutes: undefined,
         seconds: undefined
-    };
-    componentDidMount() {
-        this.interval = setInterval(() => {
-            const { timeTillDate, timeFormat } = this.props;
+    })
+
+    useState(()=>{
+        const interval = setInterval(() => {
+            const { timeTillDate, timeFormat } = props;
             const then = moment(timeTillDate, timeFormat);
             const now = moment();
             const countdown = moment(then - now);
@@ -19,19 +20,13 @@ class Countdown extends React.Component {
             const hours = countdown.format('HH');
             const minutes = countdown.format('mm');
             const seconds = countdown.format('ss');
-            this.setState({ days, hours, minutes, seconds });
+            setDates({ days, hours, minutes, seconds });
         }, 1000);
-    }
 
-    componentWillUnmount() {
-        console.log('unwinlmount...')
-        if (this.interval) {
-            clearInterval(this.interval);
-        }
-    }
+        return () => clearInterval(interval)
+    }) 
 
-    render() {
-        const { days, hours, minutes, seconds } = this.state;
+        const { days, hours, minutes, seconds } = dates;
 
         const daysRadius = mapNumber(days, 30, 0, 0, 360);
         const hoursRadius = mapNumber(hours, 24, 0, 0, 360);
@@ -42,7 +37,6 @@ class Countdown extends React.Component {
         }
         return (
             <div>
-                <h1>Countdown</h1>
                 <div className="countdown-wrapper">
                     {days && (
                         <div className="countdown-item">
@@ -76,7 +70,6 @@ class Countdown extends React.Component {
             </div>
         );
     }
-}
 const SVGCircle = ({ radius }) => (
     <svg className="countdown-svg">
         <path
@@ -123,5 +116,3 @@ function mapNumber(number, in_min, in_max, out_min, out_max) {
     );
 }
 
-
-export default Countdown;

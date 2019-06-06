@@ -9,14 +9,15 @@ const override = css`
     margin: 0 auto;
     border-color: red;
 `;
-
-function Circle() {
+export const Loading = () => {
     const [loading, setLoading] = useState(true)
-    useEffect(() => {
-        setTimeout(() => {
-            setLoading(false)
-        }, 1500)
-    })
+    useEffect(function(){
+        const runLoading = setTimeout(() => {
+                setLoading(false)
+            }, 1500)
+
+        return () => clearTimeout(runLoading)
+    },[]);
     const content = loading ? <div className='sweet-loading'>
         <SyncLoader
             css={override}
@@ -33,5 +34,3 @@ function Circle() {
 
     )
 }
-
-export default Circle;

@@ -3,7 +3,7 @@ import './index.scss';
 const Recaptcha = require('react-recaptcha');
 import md5 from 'md5'
 import axios from 'axios'
-import Loading from '../../components/spinner/circle'
+import {Loading} from '../../components/spinner/loading'
 
 export default function Login(props) {
     const [username, setUsername] = useState('');
@@ -66,7 +66,6 @@ export default function Login(props) {
     })
     return (
         <div>
-        <Loading />
             <div className="wrap">
             <div>
                 <img src="../src/asset/image/bg_img.jpg" className="bg_img" />               
@@ -117,6 +116,7 @@ export default function Login(props) {
                 </form>
             </div>
             </div>
+            <Loading />
         </div>
     );
 }

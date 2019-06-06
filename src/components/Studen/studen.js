@@ -7,7 +7,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'babel-polyfill';
 import './index.scss';
-import CountDown from '../countdown/countDown'
+import {Countdown} from '../countdown/countDown'
+
+const style = {
+    border: '10px solid #32d5be'
+}
 
 export const Studen = () => {
     const [values, setValues] = useState({ name: '', email: '', gender: '' });
@@ -25,7 +29,6 @@ export const Studen = () => {
     }
 
     const hanndleSubmit = async (e) => {
-        console.log(1)
         e.preventDefault();
         if (name === '' || email === '' || gender === '' || StringNumber.test(name) || number.test(name) || !emailRegex.test(email.toLowerCase())) {
             setErrors(true)
@@ -51,7 +54,7 @@ export const Studen = () => {
     }
     return (
         <div>
-            <Form onSubmit={hanndleSubmit}>
+            <Form onSubmit={hanndleSubmit} style={style}>
                 <FormGroup>
                     <Label for="name">Name Studen</Label>
                     <Input
@@ -98,7 +101,7 @@ export const Studen = () => {
                 <Button>Add Student</Button>
             </Form>
             <ToastContainer />
-            <CountDown 
+            <Countdown 
                 timeTillDate="06 06 2019, 12:02 pm"
                 timeFormat="MM DD YYYY, h:mm a" 
             />

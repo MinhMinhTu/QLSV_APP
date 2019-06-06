@@ -9,7 +9,7 @@ import StudenList from 'StudenList'
 import { Home } from './components/Home/index'
 import { Navbar } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import Loading from './components/spinner/circle'
+import {Loading} from './components/spinner/loading'
 
 class App extends Component {
     constructor(props) {
