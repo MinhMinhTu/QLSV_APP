@@ -9,7 +9,8 @@ import StudenList from 'StudenList'
 import { Home } from './components/Home/index'
 import { Navbar } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import {Loading} from './components/spinner/loading'
+import {Loading} from './components/spinner/loading';
+import {Music} from './components/musicUseContext/Music'
 
 class App extends Component {
     constructor(props) {
@@ -54,6 +55,9 @@ class App extends Component {
                                 <div className="linkTag">
                                     <Link to="/StudenList">Danh Sách Student</Link>
                                 </div>
+                                <div className="linkTag">
+                                    <Link to="/Music">Music</Link>
+                                </div>
                                 <div className="btn_logout">
                                     <button className="btn btn-primary" onClick={this.onLogout}>Logout</button>
                                 </div>
@@ -62,6 +66,7 @@ class App extends Component {
                             <div className="container">
                                 <Route path="/Management" exact component={Studen} />
                                 <Route path="/StudenList" component={StudenList} />
+                                <Route path="/Music" component={Music} />
                             </div>
                             <Route path="/" exact component={Home} />
                         </div>

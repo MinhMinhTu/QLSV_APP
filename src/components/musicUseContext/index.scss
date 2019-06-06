@@ -1,0 +1,55 @@
+.music {
+    margin-top: 80px;
+}
+.box {
+    border: 2px solid #8178A4;
+    border-radius: 18px;
+    margin-bottom: 25px;
+    padding: 35px;
+    position: relative;
+    box-shadow: 5px 5px 10px #86ceca;
+}
+.iconMusic {
+    position: absolute;
+    border: 1px solid gray;
+    padding: 10px 15px;
+    border-radius: 5px;
+    top: 14px;
+}
+.title-song {
+    font-family: sans-serif;
+    margin-left: 69px;
+    font-size: 25px;
+    position: absolute;
+    top: 20px;
+}
+.box-controls {
+    border: 1px solid gray;
+    border-radius: 10px;
+    font-size: 25px;
+    font-family: sans-serif;
+    background: #110201;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 18vh;
+    position: relative;
+    box-shadow: 0 5px 10px gray
+}
+.main_btn{
+    border: none;
+    background: transparent;
+    margin-top: 25px;
+    font-size: 28px;
+    padding: 10px;
+    outline: none;
+
+}
+.main_btn:hover{
+    color:gray
+}
+marquee.title_music {
+    position: absolute;
+    top: 5px;
+}
